@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41E59D88-1EF7-4874-BDD1-1E4985134C18}</ProjectGuid>
+    <ProjectGuid>{4E462A3D-EA0E-4BD9-9266-9167B2F3C409}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Orkidea.Porthos.Business</RootNamespace>
-    <AssemblyName>Orkidea.Porthos.Business</AssemblyName>
+    <RootNamespace>Orkidea.Porthos.Security</RootNamespace>
+    <AssemblyName>Orkidea.Porthos.Security</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,15 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,33 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PeopleBiz.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Orkidea.Porthos.DAL\Orkidea.Porthos.DAL.csproj">
-      <Project>{dc83585c-9612-410c-b053-4505aac61c2b}</Project>
-      <Name>Orkidea.Porthos.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orkidea.Porthos.Entities\Orkidea.Porthos.Entities.csproj">
-      <Project>{ae997f52-ff7b-42b6-a218-921d5a5c38b4}</Project>
-      <Name>Orkidea.Porthos.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orkidea.Porthos.Security\Orkidea.Porthos.Security.csproj">
-      <Project>{4e462a3d-ea0e-4bd9-9266-9167b2f3c409}</Project>
-      <Name>Orkidea.Porthos.Security</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orkidea.Porthos.Utilities\Orkidea.Porthos.Utilities.csproj">
-      <Project>{c0414c27-6a9f-466f-9452-4ce8a9fbdee8}</Project>
-      <Name>Orkidea.Porthos.Utilities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
