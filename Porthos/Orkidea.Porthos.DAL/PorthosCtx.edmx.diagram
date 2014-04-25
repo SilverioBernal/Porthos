@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="18ab6e7cb3754149a54aa079064d1694" Name="Diagram1">
+        <EntityTypeShape EntityType="PropiedadHorizontalModel.Balance" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="PropiedadHorizontalModel.BalanceDetail" Width="1.5" PointX="7.5" PointY="5.25" />
+        <EntityTypeShape EntityType="PropiedadHorizontalModel.BalancePaymentSupport" Width="1.5" PointX="7.5" PointY="8.5" />
+        <EntityTypeShape EntityType="PropiedadHorizontalModel.Concept" Width="1.5" PointX="5.25" PointY="8.125" />
+        <EntityTypeShape EntityType="PropiedadHorizontalModel.People" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="PropiedadHorizontalModel.Project" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="PropiedadHorizontalModel.ProjectDistribution" Width="1.5" PointX="10.25" PointY="5.75" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_Balance_Project" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_BalanceDetail_Balance1" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_BalancePaymentSupport_Balance1" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_BalanceDetail_Concept" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_BalanceDetail_ProjectDistribution1" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_Concept_Project" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_Project_People" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_ProjectDistribution_People" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_ProjectDistribution_People1" />
+        <AssociationConnector Association="PropiedadHorizontalModel.FK_ProjectDistribution_Project" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
