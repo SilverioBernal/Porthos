@@ -26,12 +26,14 @@ namespace Orkidea.Porthos.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Balance> Balance { get; set; }
-        public DbSet<BalanceDetail> BalanceDetail { get; set; }
-        public DbSet<BalancePaymentSupport> BalancePaymentSupport { get; set; }
+        public DbSet<BillGeneration> BillGeneration { get; set; }
+        public DbSet<BillPaymentSupport> BillPaymentSupport { get; set; }
+        public DbSet<Charge> Charge { get; set; }
         public DbSet<Concept> Concept { get; set; }
+        public DbSet<PaymentType> PaymentType { get; set; }
         public DbSet<People> People { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<ProjectDistribution> ProjectDistribution { get; set; }
+        public DbSet<PropertyBill> PropertyBill { get; set; }
     }
 }

@@ -12,21 +12,25 @@ namespace Orkidea.Porthos.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Concept
+    public partial class PropertyBill
     {
-        public Concept()
+        public PropertyBill()
         {
+            this.BillPaymentSupport = new HashSet<BillPaymentSupport>();
             this.Charge = new HashSet<Charge>();
         }
     
         public int id { get; set; }
-        public int idProyecto { get; set; }
-        public string descripcion { get; set; }
-        public bool tipo { get; set; }
-        public bool fijo { get; set; }
-        public Nullable<decimal> valor { get; set; }
+        public int idLiquidacion { get; set; }
+        public int idPropiedad { get; set; }
+        public int fechaPago { get; set; }
+        public decimal valorLiquidado { get; set; }
+        public Nullable<decimal> valorPagado { get; set; }
+        public bool pagado { get; set; }
+        public string Observaciones { get; set; }
     
+        public virtual BillGeneration BillGeneration { get; set; }
+        public virtual ICollection<BillPaymentSupport> BillPaymentSupport { get; set; }
         public virtual ICollection<Charge> Charge { get; set; }
-        public virtual Project Project { get; set; }
     }
 }

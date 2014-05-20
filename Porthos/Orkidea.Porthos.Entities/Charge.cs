@@ -12,16 +12,18 @@ namespace Orkidea.Porthos.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class BalanceDetail
+    public partial class Charge
     {
-        public int idBalance { get; set; }
-        public int idApartamento { get; set; }
+        public int id { get; set; }
+        public int idPropiedad { get; set; }
+        public Nullable<int> idFactura { get; set; }
+        public System.DateTime fecha { get; set; }
         public int idConcepto { get; set; }
-        public string tipo { get; set; }
         public decimal valor { get; set; }
+        public bool pagado { get; set; }
     
-        public virtual Balance Balance { get; set; }
         public virtual Concept Concept { get; set; }
         public virtual ProjectDistribution ProjectDistribution { get; set; }
+        public virtual PropertyBill PropertyBill { get; set; }
     }
 }

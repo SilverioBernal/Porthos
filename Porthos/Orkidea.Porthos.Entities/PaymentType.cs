@@ -12,12 +12,16 @@ namespace Orkidea.Porthos.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class BalancePaymentSupport
+    public partial class PaymentType
     {
-        public int idBalance { get; set; }
-        public int id { get; set; }
-        public byte[] soporte { get; set; }
+        public PaymentType()
+        {
+            this.BillPaymentSupport = new HashSet<BillPaymentSupport>();
+        }
     
-        public virtual Balance Balance { get; set; }
+        public int id { get; set; }
+        public string descripcion { get; set; }
+    
+        public virtual ICollection<BillPaymentSupport> BillPaymentSupport { get; set; }
     }
 }

@@ -46,8 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BillGenerationBiz.cs" />
+    <Compile Include="BillPaymentSupportBiz.cs" />
+    <Compile Include="ChargeBiz.cs" />
+    <Compile Include="ConceptBiz.cs" />
+    <Compile Include="PaymentTypeBiz.cs" />
     <Compile Include="PeopleBiz.cs" />
+    <Compile Include="ProjectBiz.cs" />
+    <Compile Include="ProjectDistributionBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBillBiz.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orkidea.Porthos.DAL\Orkidea.Porthos.DAL.csproj">

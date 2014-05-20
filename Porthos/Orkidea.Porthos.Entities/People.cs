@@ -28,12 +28,13 @@ namespace Orkidea.Porthos.Entities
         public string apellido2 { get; set; }
         public string tipoId { get; set; }
         public string numeroId { get; set; }
+        public Nullable<System.DateTime> fechaExpedicion { get; set; }
         public string tel1 { get; set; }
         public string tel2 { get; set; }
         public string email { get; set; }
         public string usuario { get; set; }
         public string contraseña { get; set; }
-        public Nullable<int> rol { get; set; }
+        public bool usuarioOrkidea { get; set; }
     
         public virtual ICollection<Project> Project { get; set; }
         public virtual ICollection<ProjectDistribution> ProjectDistribution { get; set; }

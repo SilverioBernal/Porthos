@@ -16,7 +16,7 @@ namespace Orkidea.Porthos.Entities
     {
         public ProjectDistribution()
         {
-            this.BalanceDetail = new HashSet<BalanceDetail>();
+            this.Charge = new HashSet<Charge>();
         }
     
         public int idProyecto { get; set; }
@@ -24,12 +24,19 @@ namespace Orkidea.Porthos.Entities
         public Nullable<System.Guid> idPadre { get; set; }
         public string descripcion { get; set; }
         public bool edificio { get; set; }
-        public bool apartamento { get; set; }
+        public bool propiedad { get; set; }
+        public bool areaComun { get; set; }
+        public bool alquilable { get; set; }
+        public Nullable<int> idConcepto { get; set; }
         public Nullable<int> idPropietario { get; set; }
         public Nullable<int> idTitular { get; set; }
-        public Nullable<bool> mora { get; set; }
+        public bool titularPagaAdministracion { get; set; }
+        public bool mora { get; set; }
+        public Nullable<System.DateTime> inicioMora { get; set; }
+        public bool sancion { get; set; }
+        public Nullable<System.DateTime> inicioSancion { get; set; }
     
-        public virtual ICollection<BalanceDetail> BalanceDetail { get; set; }
+        public virtual ICollection<Charge> Charge { get; set; }
         public virtual People People { get; set; }
         public virtual People People1 { get; set; }
         public virtual Project Project { get; set; }

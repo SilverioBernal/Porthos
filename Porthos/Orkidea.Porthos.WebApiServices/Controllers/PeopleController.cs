@@ -24,17 +24,6 @@ namespace Orkidea.Porthos.WebApiServices.Controllers
             return lsPeople;
         }
 
-        // GET api/people WITH CACHE MANAGEMENT
-        public HttpResponseMessage GetCached()
-        {
-            var httpResponseMessage = Request.CreateResponse<List<People>>(HttpStatusCode.OK, peopleBiz.GetPeopleList());
-            httpResponseMessage.Headers.CacheControl = new CacheControlHeaderValue() { 
-                MaxAge = TimeSpan.FromMinutes(10)
-            };
-
-            return httpResponseMessage;
-        }
-
         // GET api/people/5
         public People Get(int id)
         {
@@ -44,6 +33,18 @@ namespace Orkidea.Porthos.WebApiServices.Controllers
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
 
             return people;
+        }
+
+        // GET api/people WITH CACHE MANAGEMENT
+        public HttpResponseMessage GetCache()
+        {
+            var httpResponseMessage = Request.CreateResponse<List<People>>(HttpStatusCode.OK, peopleBiz.GetPeopleList());
+            httpResponseMessage.Headers.CacheControl = new CacheControlHeaderValue()
+            {
+                MaxAge = TimeSpan.FromMinutes(10)
+            };
+
+            return httpResponseMessage;
         }
 
         // POST api/people

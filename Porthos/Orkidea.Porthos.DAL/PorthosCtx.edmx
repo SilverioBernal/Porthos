@@ -6,32 +6,38 @@
     <edmx:StorageModels>
     <Schema Namespace="PropiedadHorizontalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="PropiedadHorizontalModelStoreContainer">
-          <EntitySet Name="Balance" EntityType="PropiedadHorizontalModel.Store.Balance" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BalanceDetail" EntityType="PropiedadHorizontalModel.Store.BalanceDetail" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BalancePaymentSupport" EntityType="PropiedadHorizontalModel.Store.BalancePaymentSupport" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BillGeneration" EntityType="PropiedadHorizontalModel.Store.BillGeneration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BillPaymentSupport" EntityType="PropiedadHorizontalModel.Store.BillPaymentSupport" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Charge" EntityType="PropiedadHorizontalModel.Store.Charge" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Concept" EntityType="PropiedadHorizontalModel.Store.Concept" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentType" EntityType="PropiedadHorizontalModel.Store.PaymentType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="People" EntityType="PropiedadHorizontalModel.Store.People" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Project" EntityType="PropiedadHorizontalModel.Store.Project" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProjectDistribution" EntityType="PropiedadHorizontalModel.Store.ProjectDistribution" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Balance_Project" Association="PropiedadHorizontalModel.Store.FK_Balance_Project">
+          <EntitySet Name="PropertyBill" EntityType="PropiedadHorizontalModel.Store.PropertyBill" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BillGeneration_Project" Association="PropiedadHorizontalModel.Store.FK_BillGeneration_Project">
             <End Role="Project" EntitySet="Project" />
-            <End Role="Balance" EntitySet="Balance" />
+            <End Role="BillGeneration" EntitySet="BillGeneration" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalanceDetail_Balance1" Association="PropiedadHorizontalModel.Store.FK_BalanceDetail_Balance1">
-            <End Role="Balance" EntitySet="Balance" />
-            <End Role="BalanceDetail" EntitySet="BalanceDetail" />
+          <AssociationSet Name="FK_BillPaymentSupport_PaymentType" Association="PropiedadHorizontalModel.Store.FK_BillPaymentSupport_PaymentType">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="BillPaymentSupport" EntitySet="BillPaymentSupport" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalanceDetail_Concept" Association="PropiedadHorizontalModel.Store.FK_BalanceDetail_Concept">
+          <AssociationSet Name="FK_BillPaymentSupport_PropertyBill" Association="PropiedadHorizontalModel.Store.FK_BillPaymentSupport_PropertyBill">
+            <End Role="PropertyBill" EntitySet="PropertyBill" />
+            <End Role="BillPaymentSupport" EntitySet="BillPaymentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Charge_Concept" Association="PropiedadHorizontalModel.Store.FK_Charge_Concept">
             <End Role="Concept" EntitySet="Concept" />
-            <End Role="BalanceDetail" EntitySet="BalanceDetail" />
+            <End Role="Charge" EntitySet="Charge" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalanceDetail_ProjectDistribution1" Association="PropiedadHorizontalModel.Store.FK_BalanceDetail_ProjectDistribution1">
+          <AssociationSet Name="FK_Charge_ProjectDistribution" Association="PropiedadHorizontalModel.Store.FK_Charge_ProjectDistribution">
             <End Role="ProjectDistribution" EntitySet="ProjectDistribution" />
-            <End Role="BalanceDetail" EntitySet="BalanceDetail" />
+            <End Role="Charge" EntitySet="Charge" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalancePaymentSupport_Balance1" Association="PropiedadHorizontalModel.Store.FK_BalancePaymentSupport_Balance1">
-            <End Role="Balance" EntitySet="Balance" />
-            <End Role="BalancePaymentSupport" EntitySet="BalancePaymentSupport" />
+          <AssociationSet Name="FK_Charge_PropertyBill" Association="PropiedadHorizontalModel.Store.FK_Charge_PropertyBill">
+            <End Role="PropertyBill" EntitySet="PropertyBill" />
+            <End Role="Charge" EntitySet="Charge" />
           </AssociationSet>
           <AssociationSet Name="FK_Concept_Project" Association="PropiedadHorizontalModel.Store.FK_Concept_Project">
             <End Role="Project" EntitySet="Project" />
@@ -53,35 +59,47 @@
             <End Role="Project" EntitySet="Project" />
             <End Role="ProjectDistribution" EntitySet="ProjectDistribution" />
           </AssociationSet>
+          <AssociationSet Name="FK_PropertyBill_BillGeneration" Association="PropiedadHorizontalModel.Store.FK_PropertyBill_BillGeneration">
+            <End Role="BillGeneration" EntitySet="BillGeneration" />
+            <End Role="PropertyBill" EntitySet="PropertyBill" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Balance">
+        <EntityType Name="BillGeneration">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="idProyecto" Type="int" Nullable="false" />
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="desde" Type="date" Nullable="false" />
-          <Property Name="hasta" Type="date" Nullable="false" />
-          <Property Name="pagado" Type="bit" Nullable="false" />
+          <Property Name="fechaInicioLiquidacion" Type="date" Nullable="false" />
+          <Property Name="fechaFinLiquidacion" Type="date" Nullable="false" />
+          <Property Name="fechaCorte" Type="date" Nullable="false" />
+          <Property Name="fechaLimitePago1" Type="date" Nullable="false" />
+          <Property Name="fechaLimitePago2" Type="date" />
         </EntityType>
-        <EntityType Name="BalanceDetail">
-          <Key>
-            <PropertyRef Name="idBalance" />
-            <PropertyRef Name="idApartamento" />
-          </Key>
-          <Property Name="idBalance" Type="int" Nullable="false" />
-          <Property Name="idApartamento" Type="int" Nullable="false" />
-          <Property Name="idConcepto" Type="int" Nullable="false" />
-          <Property Name="tipo" Type="char" Nullable="false" MaxLength="1" />
-          <Property Name="valor" Type="decimal" Nullable="false" Scale="2" />
-        </EntityType>
-        <EntityType Name="BalancePaymentSupport">
+        <EntityType Name="BillPaymentSupport">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="idBalance" Type="int" Nullable="false" />
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="soporte" Type="varbinary(max)" Nullable="false" />
+          <Property Name="idFactura" Type="int" Nullable="false" />
+          <Property Name="idTipoPago" Type="int" />
+          <Property Name="soporte" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="valor" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="fechaPago" Type="datetime" Nullable="false" />
+          <Property Name="aceptado" Type="bit" />
+          <Property Name="observaciones" Type="varchar" MaxLength="900" />
+        </EntityType>
+        <EntityType Name="Charge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idPropiedad" Type="int" Nullable="false" />
+          <Property Name="idFactura" Type="int" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="idConcepto" Type="int" Nullable="false" />
+          <Property Name="valor" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="pagado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Concept">
           <Key>
@@ -90,6 +108,16 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="idProyecto" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="tipo" Type="bit" Nullable="false" />
+          <Property Name="fijo" Type="bit" Nullable="false" />
+          <Property Name="valor" Type="numeric" Scale="2" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="250" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -102,12 +130,13 @@
           <Property Name="apellido2" Type="varchar" MaxLength="50" />
           <Property Name="tipoId" Type="char" Nullable="false" MaxLength="2" />
           <Property Name="numeroId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="fechaExpedicion" Type="date" />
           <Property Name="tel1" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="tel2" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="usuario" Type="varchar" MaxLength="50" />
           <Property Name="contraseña" Type="varchar" MaxLength="250" />
-          <Property Name="rol" Type="int" />
+          <Property Name="usuarioOrkidea" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -123,8 +152,15 @@
           <Property Name="fax" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="url" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="logo" Type="varbinary(max)" />
+          <Property Name="logo" Type="varchar" MaxLength="250" />
           <Property Name="idAdministrador" Type="int" />
+          <Property Name="periodoPago" Type="varchar" Nullable="false" MaxLength="1" />
+          <Property Name="diaInicialPeriodo" Type="int" Nullable="false" />
+          <Property Name="diaFinalPeriodo" Type="int" Nullable="false" />
+          <Property Name="diaCorteLiquidacion" Type="int" Nullable="false" />
+          <Property Name="diasPrimeraFechaPago" Type="int" Nullable="false" />
+          <Property Name="diasSeguntaFechaPago" Type="int" />
+          <Property Name="porcentajeMora" Type="numeric" Nullable="false" Scale="4" />
         </EntityType>
         <EntityType Name="ProjectDistribution">
           <Key>
@@ -135,68 +171,100 @@
           <Property Name="idPadre" Type="uniqueidentifier" />
           <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="edificio" Type="bit" Nullable="false" />
-          <Property Name="apartamento" Type="bit" Nullable="false" />
+          <Property Name="propiedad" Type="bit" Nullable="false" />
+          <Property Name="areaComun" Type="bit" Nullable="false" />
+          <Property Name="alquilable" Type="bit" Nullable="false" />
+          <Property Name="idConcepto" Type="int" />
           <Property Name="idPropietario" Type="int" />
           <Property Name="idTitular" Type="int" />
-          <Property Name="mora" Type="bit" />
+          <Property Name="titularPagaAdministracion" Type="bit" Nullable="false" />
+          <Property Name="mora" Type="bit" Nullable="false" />
+          <Property Name="inicioMora" Type="date" />
+          <Property Name="sancion" Type="bit" Nullable="false" />
+          <Property Name="inicioSancion" Type="date" />
         </EntityType>
-        <Association Name="FK_Balance_Project">
+        <EntityType Name="PropertyBill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idLiquidacion" Type="int" Nullable="false" />
+          <Property Name="idPropiedad" Type="int" Nullable="false" />
+          <Property Name="fechaPago" Type="int" Nullable="false" />
+          <Property Name="valorLiquidado" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="valorPagado" Type="numeric" Scale="2" />
+          <Property Name="pagado" Type="bit" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_BillGeneration_Project">
           <End Role="Project" Type="PropiedadHorizontalModel.Store.Project" Multiplicity="1" />
-          <End Role="Balance" Type="PropiedadHorizontalModel.Store.Balance" Multiplicity="*" />
+          <End Role="BillGeneration" Type="PropiedadHorizontalModel.Store.BillGeneration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Project">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Balance">
+            <Dependent Role="BillGeneration">
               <PropertyRef Name="idProyecto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalanceDetail_Balance1">
-          <End Role="Balance" Type="PropiedadHorizontalModel.Store.Balance" Multiplicity="1" />
-          <End Role="BalanceDetail" Type="PropiedadHorizontalModel.Store.BalanceDetail" Multiplicity="*" />
+        <Association Name="FK_BillPaymentSupport_PaymentType">
+          <End Role="PaymentType" Type="PropiedadHorizontalModel.Store.PaymentType" Multiplicity="0..1" />
+          <End Role="BillPaymentSupport" Type="PropiedadHorizontalModel.Store.BillPaymentSupport" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Balance">
+            <Principal Role="PaymentType">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalanceDetail">
-              <PropertyRef Name="idBalance" />
+            <Dependent Role="BillPaymentSupport">
+              <PropertyRef Name="idTipoPago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalanceDetail_Concept">
+        <Association Name="FK_BillPaymentSupport_PropertyBill">
+          <End Role="PropertyBill" Type="PropiedadHorizontalModel.Store.PropertyBill" Multiplicity="1" />
+          <End Role="BillPaymentSupport" Type="PropiedadHorizontalModel.Store.BillPaymentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyBill">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BillPaymentSupport">
+              <PropertyRef Name="idFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Charge_Concept">
           <End Role="Concept" Type="PropiedadHorizontalModel.Store.Concept" Multiplicity="1" />
-          <End Role="BalanceDetail" Type="PropiedadHorizontalModel.Store.BalanceDetail" Multiplicity="*" />
+          <End Role="Charge" Type="PropiedadHorizontalModel.Store.Charge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Concept">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalanceDetail">
+            <Dependent Role="Charge">
               <PropertyRef Name="idConcepto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalanceDetail_ProjectDistribution1">
+        <Association Name="FK_Charge_ProjectDistribution">
           <End Role="ProjectDistribution" Type="PropiedadHorizontalModel.Store.ProjectDistribution" Multiplicity="1" />
-          <End Role="BalanceDetail" Type="PropiedadHorizontalModel.Store.BalanceDetail" Multiplicity="*" />
+          <End Role="Charge" Type="PropiedadHorizontalModel.Store.Charge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProjectDistribution">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalanceDetail">
-              <PropertyRef Name="idApartamento" />
+            <Dependent Role="Charge">
+              <PropertyRef Name="idPropiedad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalancePaymentSupport_Balance1">
-          <End Role="Balance" Type="PropiedadHorizontalModel.Store.Balance" Multiplicity="1" />
-          <End Role="BalancePaymentSupport" Type="PropiedadHorizontalModel.Store.BalancePaymentSupport" Multiplicity="*" />
+        <Association Name="FK_Charge_PropertyBill">
+          <End Role="PropertyBill" Type="PropiedadHorizontalModel.Store.PropertyBill" Multiplicity="0..1" />
+          <End Role="Charge" Type="PropiedadHorizontalModel.Store.Charge" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Balance">
+            <Principal Role="PropertyBill">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalancePaymentSupport">
-              <PropertyRef Name="idBalance" />
+            <Dependent Role="Charge">
+              <PropertyRef Name="idFactura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -260,37 +328,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PropertyBill_BillGeneration">
+          <End Role="BillGeneration" Type="PropiedadHorizontalModel.Store.BillGeneration" Multiplicity="1" />
+          <End Role="PropertyBill" Type="PropiedadHorizontalModel.Store.PropertyBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillGeneration">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyBill">
+              <PropertyRef Name="idLiquidacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PropiedadHorizontalModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PropiedadHorizontalEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Balance" EntityType="PropiedadHorizontalModel.Balance" />
-          <EntitySet Name="BalanceDetail" EntityType="PropiedadHorizontalModel.BalanceDetail" />
-          <EntitySet Name="BalancePaymentSupport" EntityType="PropiedadHorizontalModel.BalancePaymentSupport" />
+          <EntitySet Name="BillGeneration" EntityType="PropiedadHorizontalModel.BillGeneration" />
+          <EntitySet Name="BillPaymentSupport" EntityType="PropiedadHorizontalModel.BillPaymentSupport" />
+          <EntitySet Name="Charge" EntityType="PropiedadHorizontalModel.Charge" />
           <EntitySet Name="Concept" EntityType="PropiedadHorizontalModel.Concept" />
+          <EntitySet Name="PaymentType" EntityType="PropiedadHorizontalModel.PaymentType" />
           <EntitySet Name="People" EntityType="PropiedadHorizontalModel.People" />
           <EntitySet Name="Project" EntityType="PropiedadHorizontalModel.Project" />
           <EntitySet Name="ProjectDistribution" EntityType="PropiedadHorizontalModel.ProjectDistribution" />
-          <AssociationSet Name="FK_Balance_Project" Association="PropiedadHorizontalModel.FK_Balance_Project">
+          <EntitySet Name="PropertyBill" EntityType="PropiedadHorizontalModel.PropertyBill" />
+          <AssociationSet Name="FK_BillGeneration_Project" Association="PropiedadHorizontalModel.FK_BillGeneration_Project">
             <End Role="Project" EntitySet="Project" />
-            <End Role="Balance" EntitySet="Balance" />
+            <End Role="BillGeneration" EntitySet="BillGeneration" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalanceDetail_Balance1" Association="PropiedadHorizontalModel.FK_BalanceDetail_Balance1">
-            <End Role="Balance" EntitySet="Balance" />
-            <End Role="BalanceDetail" EntitySet="BalanceDetail" />
+          <AssociationSet Name="FK_PropertyBill_BillGeneration" Association="PropiedadHorizontalModel.FK_PropertyBill_BillGeneration">
+            <End Role="BillGeneration" EntitySet="BillGeneration" />
+            <End Role="PropertyBill" EntitySet="PropertyBill" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalancePaymentSupport_Balance1" Association="PropiedadHorizontalModel.FK_BalancePaymentSupport_Balance1">
-            <End Role="Balance" EntitySet="Balance" />
-            <End Role="BalancePaymentSupport" EntitySet="BalancePaymentSupport" />
+          <AssociationSet Name="FK_BillPaymentSupport_PaymentType" Association="PropiedadHorizontalModel.FK_BillPaymentSupport_PaymentType">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="BillPaymentSupport" EntitySet="BillPaymentSupport" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalanceDetail_Concept" Association="PropiedadHorizontalModel.FK_BalanceDetail_Concept">
+          <AssociationSet Name="FK_BillPaymentSupport_PropertyBill" Association="PropiedadHorizontalModel.FK_BillPaymentSupport_PropertyBill">
+            <End Role="PropertyBill" EntitySet="PropertyBill" />
+            <End Role="BillPaymentSupport" EntitySet="BillPaymentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Charge_Concept" Association="PropiedadHorizontalModel.FK_Charge_Concept">
             <End Role="Concept" EntitySet="Concept" />
-            <End Role="BalanceDetail" EntitySet="BalanceDetail" />
+            <End Role="Charge" EntitySet="Charge" />
           </AssociationSet>
-          <AssociationSet Name="FK_BalanceDetail_ProjectDistribution1" Association="PropiedadHorizontalModel.FK_BalanceDetail_ProjectDistribution1">
+          <AssociationSet Name="FK_Charge_ProjectDistribution" Association="PropiedadHorizontalModel.FK_Charge_ProjectDistribution">
             <End Role="ProjectDistribution" EntitySet="ProjectDistribution" />
-            <End Role="BalanceDetail" EntitySet="BalanceDetail" />
+            <End Role="Charge" EntitySet="Charge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Charge_PropertyBill" Association="PropiedadHorizontalModel.FK_Charge_PropertyBill">
+            <End Role="PropertyBill" EntitySet="PropertyBill" />
+            <End Role="Charge" EntitySet="Charge" />
           </AssociationSet>
           <AssociationSet Name="FK_Concept_Project" Association="PropiedadHorizontalModel.FK_Concept_Project">
             <End Role="Project" EntitySet="Project" />
@@ -313,41 +403,49 @@
             <End Role="ProjectDistribution" EntitySet="ProjectDistribution" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Balance">
+        <EntityType Name="BillGeneration">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="idProyecto" Nullable="false" />
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="desde" Nullable="false" Precision="0" />
-          <Property Type="DateTime" Name="hasta" Nullable="false" Precision="0" />
-          <Property Type="Boolean" Name="pagado" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="PropiedadHorizontalModel.FK_Balance_Project" FromRole="Balance" ToRole="Project" />
-          <NavigationProperty Name="BalanceDetail" Relationship="PropiedadHorizontalModel.FK_BalanceDetail_Balance1" FromRole="Balance" ToRole="BalanceDetail" />
-          <NavigationProperty Name="BalancePaymentSupport" Relationship="PropiedadHorizontalModel.FK_BalancePaymentSupport_Balance1" FromRole="Balance" ToRole="BalancePaymentSupport" />
+          <Property Type="DateTime" Name="fechaInicioLiquidacion" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="fechaFinLiquidacion" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="fechaCorte" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="fechaLimitePago1" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="fechaLimitePago2" Precision="0" />
+          <NavigationProperty Name="Project" Relationship="PropiedadHorizontalModel.FK_BillGeneration_Project" FromRole="BillGeneration" ToRole="Project" />
+          <NavigationProperty Name="PropertyBill" Relationship="PropiedadHorizontalModel.FK_PropertyBill_BillGeneration" FromRole="BillGeneration" ToRole="PropertyBill" />
         </EntityType>
-        <EntityType Name="BalanceDetail">
-          <Key>
-            <PropertyRef Name="idBalance" />
-            <PropertyRef Name="idApartamento" />
-          </Key>
-          <Property Type="Int32" Name="idBalance" Nullable="false" />
-          <Property Type="Int32" Name="idApartamento" Nullable="false" />
-          <Property Type="Int32" Name="idConcepto" Nullable="false" />
-          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Decimal" Name="valor" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Balance" Relationship="PropiedadHorizontalModel.FK_BalanceDetail_Balance1" FromRole="BalanceDetail" ToRole="Balance" />
-          <NavigationProperty Name="Concept" Relationship="PropiedadHorizontalModel.FK_BalanceDetail_Concept" FromRole="BalanceDetail" ToRole="Concept" />
-          <NavigationProperty Name="ProjectDistribution" Relationship="PropiedadHorizontalModel.FK_BalanceDetail_ProjectDistribution1" FromRole="BalanceDetail" ToRole="ProjectDistribution" />
-        </EntityType>
-        <EntityType Name="BalancePaymentSupport">
+        <EntityType Name="BillPaymentSupport">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="idBalance" Nullable="false" />
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Binary" Name="soporte" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Balance" Relationship="PropiedadHorizontalModel.FK_BalancePaymentSupport_Balance1" FromRole="BalancePaymentSupport" ToRole="Balance" />
+          <Property Type="Int32" Name="idFactura" Nullable="false" />
+          <Property Type="Int32" Name="idTipoPago" />
+          <Property Type="String" Name="soporte" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="valor" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="fechaPago" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="aceptado" />
+          <Property Type="String" Name="observaciones" MaxLength="900" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PaymentType" Relationship="PropiedadHorizontalModel.FK_BillPaymentSupport_PaymentType" FromRole="BillPaymentSupport" ToRole="PaymentType" />
+          <NavigationProperty Name="PropertyBill" Relationship="PropiedadHorizontalModel.FK_BillPaymentSupport_PropertyBill" FromRole="BillPaymentSupport" ToRole="PropertyBill" />
+        </EntityType>
+        <EntityType Name="Charge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idPropiedad" Nullable="false" />
+          <Property Type="Int32" Name="idFactura" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="idConcepto" Nullable="false" />
+          <Property Type="Decimal" Name="valor" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="pagado" Nullable="false" />
+          <NavigationProperty Name="Concept" Relationship="PropiedadHorizontalModel.FK_Charge_Concept" FromRole="Charge" ToRole="Concept" />
+          <NavigationProperty Name="ProjectDistribution" Relationship="PropiedadHorizontalModel.FK_Charge_ProjectDistribution" FromRole="Charge" ToRole="ProjectDistribution" />
+          <NavigationProperty Name="PropertyBill" Relationship="PropiedadHorizontalModel.FK_Charge_PropertyBill" FromRole="Charge" ToRole="PropertyBill" />
         </EntityType>
         <EntityType Name="Concept">
           <Key>
@@ -356,8 +454,19 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="idProyecto" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BalanceDetail" Relationship="PropiedadHorizontalModel.FK_BalanceDetail_Concept" FromRole="Concept" ToRole="BalanceDetail" />
+          <Property Type="Boolean" Name="tipo" Nullable="false" />
+          <Property Type="Boolean" Name="fijo" Nullable="false" />
+          <Property Type="Decimal" Name="valor" Precision="18" Scale="2" />
+          <NavigationProperty Name="Charge" Relationship="PropiedadHorizontalModel.FK_Charge_Concept" FromRole="Concept" ToRole="Charge" />
           <NavigationProperty Name="Project" Relationship="PropiedadHorizontalModel.FK_Concept_Project" FromRole="Concept" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BillPaymentSupport" Relationship="PropiedadHorizontalModel.FK_BillPaymentSupport_PaymentType" FromRole="PaymentType" ToRole="BillPaymentSupport" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -370,12 +479,13 @@
           <Property Type="String" Name="apellido2" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="tipoId" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="numeroId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="fechaExpedicion" Precision="0" />
           <Property Type="String" Name="tel1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="tel2" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="email" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="usuario" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="contraseña" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="rol" />
+          <Property Type="Boolean" Name="usuarioOrkidea" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="PropiedadHorizontalModel.FK_Project_People" FromRole="People" ToRole="Project" />
           <NavigationProperty Name="ProjectDistribution" Relationship="PropiedadHorizontalModel.FK_ProjectDistribution_People" FromRole="People" ToRole="ProjectDistribution" />
           <NavigationProperty Name="ProjectDistribution1" Relationship="PropiedadHorizontalModel.FK_ProjectDistribution_People1" FromRole="People" ToRole="ProjectDistribution" />
@@ -394,9 +504,16 @@
           <Property Type="String" Name="fax" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="url" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Binary" Name="logo" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="logo" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="idAdministrador" />
-          <NavigationProperty Name="Balance" Relationship="PropiedadHorizontalModel.FK_Balance_Project" FromRole="Project" ToRole="Balance" />
+          <Property Type="String" Name="periodoPago" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="diaInicialPeriodo" Nullable="false" />
+          <Property Type="Int32" Name="diaFinalPeriodo" Nullable="false" />
+          <Property Type="Int32" Name="diaCorteLiquidacion" Nullable="false" />
+          <Property Type="Int32" Name="diasPrimeraFechaPago" Nullable="false" />
+          <Property Type="Int32" Name="diasSeguntaFechaPago" />
+          <Property Type="Decimal" Name="porcentajeMora" Nullable="false" Precision="18" Scale="4" />
+          <NavigationProperty Name="BillGeneration" Relationship="PropiedadHorizontalModel.FK_BillGeneration_Project" FromRole="Project" ToRole="BillGeneration" />
           <NavigationProperty Name="Concept" Relationship="PropiedadHorizontalModel.FK_Concept_Project" FromRole="Project" ToRole="Concept" />
           <NavigationProperty Name="People" Relationship="PropiedadHorizontalModel.FK_Project_People" FromRole="Project" ToRole="People" />
           <NavigationProperty Name="ProjectDistribution" Relationship="PropiedadHorizontalModel.FK_ProjectDistribution_Project" FromRole="Project" ToRole="ProjectDistribution" />
@@ -410,72 +527,119 @@
           <Property Type="Guid" Name="idPadre" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="edificio" Nullable="false" />
-          <Property Type="Boolean" Name="apartamento" Nullable="false" />
+          <Property Type="Boolean" Name="propiedad" Nullable="false" />
+          <Property Type="Boolean" Name="areaComun" Nullable="false" />
+          <Property Type="Boolean" Name="alquilable" Nullable="false" />
+          <Property Type="Int32" Name="idConcepto" />
           <Property Type="Int32" Name="idPropietario" />
           <Property Type="Int32" Name="idTitular" />
-          <Property Type="Boolean" Name="mora" />
-          <NavigationProperty Name="BalanceDetail" Relationship="PropiedadHorizontalModel.FK_BalanceDetail_ProjectDistribution1" FromRole="ProjectDistribution" ToRole="BalanceDetail" />
+          <Property Type="Boolean" Name="titularPagaAdministracion" Nullable="false" />
+          <Property Type="Boolean" Name="mora" Nullable="false" />
+          <Property Type="DateTime" Name="inicioMora" Precision="0" />
+          <Property Type="Boolean" Name="sancion" Nullable="false" />
+          <Property Type="DateTime" Name="inicioSancion" Precision="0" />
+          <NavigationProperty Name="Charge" Relationship="PropiedadHorizontalModel.FK_Charge_ProjectDistribution" FromRole="ProjectDistribution" ToRole="Charge" />
           <NavigationProperty Name="People" Relationship="PropiedadHorizontalModel.FK_ProjectDistribution_People" FromRole="ProjectDistribution" ToRole="People" />
           <NavigationProperty Name="People1" Relationship="PropiedadHorizontalModel.FK_ProjectDistribution_People1" FromRole="ProjectDistribution" ToRole="People" />
           <NavigationProperty Name="Project" Relationship="PropiedadHorizontalModel.FK_ProjectDistribution_Project" FromRole="ProjectDistribution" ToRole="Project" />
         </EntityType>
-        <Association Name="FK_Balance_Project">
+        <EntityType Name="PropertyBill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idLiquidacion" Nullable="false" />
+          <Property Type="Int32" Name="idPropiedad" Nullable="false" />
+          <Property Type="Int32" Name="fechaPago" Nullable="false" />
+          <Property Type="Decimal" Name="valorLiquidado" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="valorPagado" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="pagado" Nullable="false" />
+          <Property Type="String" Name="Observaciones" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BillGeneration" Relationship="PropiedadHorizontalModel.FK_PropertyBill_BillGeneration" FromRole="PropertyBill" ToRole="BillGeneration" />
+          <NavigationProperty Name="BillPaymentSupport" Relationship="PropiedadHorizontalModel.FK_BillPaymentSupport_PropertyBill" FromRole="PropertyBill" ToRole="BillPaymentSupport" />
+          <NavigationProperty Name="Charge" Relationship="PropiedadHorizontalModel.FK_Charge_PropertyBill" FromRole="PropertyBill" ToRole="Charge" />
+        </EntityType>
+        <Association Name="FK_BillGeneration_Project">
           <End Type="PropiedadHorizontalModel.Project" Role="Project" Multiplicity="1" />
-          <End Type="PropiedadHorizontalModel.Balance" Role="Balance" Multiplicity="*" />
+          <End Type="PropiedadHorizontalModel.BillGeneration" Role="BillGeneration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Project">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Balance">
+            <Dependent Role="BillGeneration">
               <PropertyRef Name="idProyecto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalanceDetail_Balance1">
-          <End Type="PropiedadHorizontalModel.Balance" Role="Balance" Multiplicity="1" />
-          <End Type="PropiedadHorizontalModel.BalanceDetail" Role="BalanceDetail" Multiplicity="*" />
+        <Association Name="FK_PropertyBill_BillGeneration">
+          <End Type="PropiedadHorizontalModel.BillGeneration" Role="BillGeneration" Multiplicity="1" />
+          <End Type="PropiedadHorizontalModel.PropertyBill" Role="PropertyBill" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Balance">
+            <Principal Role="BillGeneration">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalanceDetail">
-              <PropertyRef Name="idBalance" />
+            <Dependent Role="PropertyBill">
+              <PropertyRef Name="idLiquidacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalancePaymentSupport_Balance1">
-          <End Type="PropiedadHorizontalModel.Balance" Role="Balance" Multiplicity="1" />
-          <End Type="PropiedadHorizontalModel.BalancePaymentSupport" Role="BalancePaymentSupport" Multiplicity="*" />
+        <Association Name="FK_BillPaymentSupport_PaymentType">
+          <End Type="PropiedadHorizontalModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
+          <End Type="PropiedadHorizontalModel.BillPaymentSupport" Role="BillPaymentSupport" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Balance">
+            <Principal Role="PaymentType">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalancePaymentSupport">
-              <PropertyRef Name="idBalance" />
+            <Dependent Role="BillPaymentSupport">
+              <PropertyRef Name="idTipoPago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalanceDetail_Concept">
+        <Association Name="FK_BillPaymentSupport_PropertyBill">
+          <End Type="PropiedadHorizontalModel.PropertyBill" Role="PropertyBill" Multiplicity="1" />
+          <End Type="PropiedadHorizontalModel.BillPaymentSupport" Role="BillPaymentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyBill">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BillPaymentSupport">
+              <PropertyRef Name="idFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Charge_Concept">
           <End Type="PropiedadHorizontalModel.Concept" Role="Concept" Multiplicity="1" />
-          <End Type="PropiedadHorizontalModel.BalanceDetail" Role="BalanceDetail" Multiplicity="*" />
+          <End Type="PropiedadHorizontalModel.Charge" Role="Charge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Concept">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalanceDetail">
+            <Dependent Role="Charge">
               <PropertyRef Name="idConcepto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BalanceDetail_ProjectDistribution1">
+        <Association Name="FK_Charge_ProjectDistribution">
           <End Type="PropiedadHorizontalModel.ProjectDistribution" Role="ProjectDistribution" Multiplicity="1" />
-          <End Type="PropiedadHorizontalModel.BalanceDetail" Role="BalanceDetail" Multiplicity="*" />
+          <End Type="PropiedadHorizontalModel.Charge" Role="Charge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProjectDistribution">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BalanceDetail">
-              <PropertyRef Name="idApartamento" />
+            <Dependent Role="Charge">
+              <PropertyRef Name="idPropiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Charge_PropertyBill">
+          <End Type="PropiedadHorizontalModel.PropertyBill" Role="PropertyBill" Multiplicity="0..1" />
+          <End Type="PropiedadHorizontalModel.Charge" Role="Charge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyBill">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Charge">
+              <PropertyRef Name="idFactura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -545,42 +709,62 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PropiedadHorizontalModelStoreContainer" CdmEntityContainer="PropiedadHorizontalEntities">
-          <EntitySetMapping Name="Balance">
-            <EntityTypeMapping TypeName="PropiedadHorizontalModel.Balance">
-              <MappingFragment StoreEntitySet="Balance">
-                <ScalarProperty Name="pagado" ColumnName="pagado" />
-                <ScalarProperty Name="hasta" ColumnName="hasta" />
-                <ScalarProperty Name="desde" ColumnName="desde" />
+          <EntitySetMapping Name="BillGeneration">
+            <EntityTypeMapping TypeName="PropiedadHorizontalModel.BillGeneration">
+              <MappingFragment StoreEntitySet="BillGeneration">
+                <ScalarProperty Name="fechaLimitePago2" ColumnName="fechaLimitePago2" />
+                <ScalarProperty Name="fechaLimitePago1" ColumnName="fechaLimitePago1" />
+                <ScalarProperty Name="fechaCorte" ColumnName="fechaCorte" />
+                <ScalarProperty Name="fechaFinLiquidacion" ColumnName="fechaFinLiquidacion" />
+                <ScalarProperty Name="fechaInicioLiquidacion" ColumnName="fechaInicioLiquidacion" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BalanceDetail">
-            <EntityTypeMapping TypeName="PropiedadHorizontalModel.BalanceDetail">
-              <MappingFragment StoreEntitySet="BalanceDetail">
+          <EntitySetMapping Name="BillPaymentSupport">
+            <EntityTypeMapping TypeName="PropiedadHorizontalModel.BillPaymentSupport">
+              <MappingFragment StoreEntitySet="BillPaymentSupport">
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="aceptado" ColumnName="aceptado" />
+                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
                 <ScalarProperty Name="valor" ColumnName="valor" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="idConcepto" ColumnName="idConcepto" />
-                <ScalarProperty Name="idApartamento" ColumnName="idApartamento" />
-                <ScalarProperty Name="idBalance" ColumnName="idBalance" />
+                <ScalarProperty Name="soporte" ColumnName="soporte" />
+                <ScalarProperty Name="idTipoPago" ColumnName="idTipoPago" />
+                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BalancePaymentSupport">
-            <EntityTypeMapping TypeName="PropiedadHorizontalModel.BalancePaymentSupport">
-              <MappingFragment StoreEntitySet="BalancePaymentSupport">
-                <ScalarProperty Name="soporte" ColumnName="soporte" />
+          <EntitySetMapping Name="Charge">
+            <EntityTypeMapping TypeName="PropiedadHorizontalModel.Charge">
+              <MappingFragment StoreEntitySet="Charge">
+                <ScalarProperty Name="pagado" ColumnName="pagado" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="idConcepto" ColumnName="idConcepto" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+                <ScalarProperty Name="idPropiedad" ColumnName="idPropiedad" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idBalance" ColumnName="idBalance" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Concept">
             <EntityTypeMapping TypeName="PropiedadHorizontalModel.Concept">
               <MappingFragment StoreEntitySet="Concept">
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="fijo" ColumnName="fijo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentType">
+            <EntityTypeMapping TypeName="PropiedadHorizontalModel.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentType">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -588,12 +772,13 @@
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="PropiedadHorizontalModel.People">
               <MappingFragment StoreEntitySet="People">
-                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="usuarioOrkidea" ColumnName="usuarioOrkidea" />
                 <ScalarProperty Name="contraseña" ColumnName="contraseña" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="tel2" ColumnName="tel2" />
                 <ScalarProperty Name="tel1" ColumnName="tel1" />
+                <ScalarProperty Name="fechaExpedicion" ColumnName="fechaExpedicion" />
                 <ScalarProperty Name="numeroId" ColumnName="numeroId" />
                 <ScalarProperty Name="tipoId" ColumnName="tipoId" />
                 <ScalarProperty Name="apellido2" ColumnName="apellido2" />
@@ -607,6 +792,13 @@
           <EntitySetMapping Name="Project">
             <EntityTypeMapping TypeName="PropiedadHorizontalModel.Project">
               <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="porcentajeMora" ColumnName="porcentajeMora" />
+                <ScalarProperty Name="diasSeguntaFechaPago" ColumnName="diasSeguntaFechaPago" />
+                <ScalarProperty Name="diasPrimeraFechaPago" ColumnName="diasPrimeraFechaPago" />
+                <ScalarProperty Name="diaCorteLiquidacion" ColumnName="diaCorteLiquidacion" />
+                <ScalarProperty Name="diaFinalPeriodo" ColumnName="diaFinalPeriodo" />
+                <ScalarProperty Name="diaInicialPeriodo" ColumnName="diaInicialPeriodo" />
+                <ScalarProperty Name="periodoPago" ColumnName="periodoPago" />
                 <ScalarProperty Name="idAdministrador" ColumnName="idAdministrador" />
                 <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="url" ColumnName="url" />
@@ -625,15 +817,36 @@
           <EntitySetMapping Name="ProjectDistribution">
             <EntityTypeMapping TypeName="PropiedadHorizontalModel.ProjectDistribution">
               <MappingFragment StoreEntitySet="ProjectDistribution">
+                <ScalarProperty Name="inicioSancion" ColumnName="inicioSancion" />
+                <ScalarProperty Name="sancion" ColumnName="sancion" />
+                <ScalarProperty Name="inicioMora" ColumnName="inicioMora" />
                 <ScalarProperty Name="mora" ColumnName="mora" />
+                <ScalarProperty Name="titularPagaAdministracion" ColumnName="titularPagaAdministracion" />
                 <ScalarProperty Name="idTitular" ColumnName="idTitular" />
                 <ScalarProperty Name="idPropietario" ColumnName="idPropietario" />
-                <ScalarProperty Name="apartamento" ColumnName="apartamento" />
+                <ScalarProperty Name="idConcepto" ColumnName="idConcepto" />
+                <ScalarProperty Name="alquilable" ColumnName="alquilable" />
+                <ScalarProperty Name="areaComun" ColumnName="areaComun" />
+                <ScalarProperty Name="propiedad" ColumnName="propiedad" />
                 <ScalarProperty Name="edificio" ColumnName="edificio" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idPadre" ColumnName="idPadre" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyBill">
+            <EntityTypeMapping TypeName="PropiedadHorizontalModel.PropertyBill">
+              <MappingFragment StoreEntitySet="PropertyBill">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="pagado" ColumnName="pagado" />
+                <ScalarProperty Name="valorPagado" ColumnName="valorPagado" />
+                <ScalarProperty Name="valorLiquidado" ColumnName="valorLiquidado" />
+                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+                <ScalarProperty Name="idPropiedad" ColumnName="idPropiedad" />
+                <ScalarProperty Name="idLiquidacion" ColumnName="idLiquidacion" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -16,7 +16,7 @@ namespace Orkidea.Porthos.Entities
     {
         public Project()
         {
-            this.Balance = new HashSet<Balance>();
+            this.BillGeneration = new HashSet<BillGeneration>();
             this.Concept = new HashSet<Concept>();
             this.ProjectDistribution = new HashSet<ProjectDistribution>();
         }
@@ -31,10 +31,17 @@ namespace Orkidea.Porthos.Entities
         public string fax { get; set; }
         public string email { get; set; }
         public string url { get; set; }
-        public byte[] logo { get; set; }
+        public string logo { get; set; }
         public Nullable<int> idAdministrador { get; set; }
+        public string periodoPago { get; set; }
+        public int diaInicialPeriodo { get; set; }
+        public int diaFinalPeriodo { get; set; }
+        public int diaCorteLiquidacion { get; set; }
+        public int diasPrimeraFechaPago { get; set; }
+        public Nullable<int> diasSeguntaFechaPago { get; set; }
+        public decimal porcentajeMora { get; set; }
     
-        public virtual ICollection<Balance> Balance { get; set; }
+        public virtual ICollection<BillGeneration> BillGeneration { get; set; }
         public virtual ICollection<Concept> Concept { get; set; }
         public virtual People People { get; set; }
         public virtual ICollection<ProjectDistribution> ProjectDistribution { get; set; }

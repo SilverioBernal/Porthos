@@ -12,22 +12,22 @@ namespace Orkidea.Porthos.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Balance
+    public partial class BillGeneration
     {
-        public Balance()
+        public BillGeneration()
         {
-            this.BalanceDetail = new HashSet<BalanceDetail>();
-            this.BalancePaymentSupport = new HashSet<BalancePaymentSupport>();
+            this.PropertyBill = new HashSet<PropertyBill>();
         }
     
         public int idProyecto { get; set; }
         public int id { get; set; }
-        public System.DateTime desde { get; set; }
-        public System.DateTime hasta { get; set; }
-        public bool pagado { get; set; }
+        public System.DateTime fechaInicioLiquidacion { get; set; }
+        public System.DateTime fechaFinLiquidacion { get; set; }
+        public System.DateTime fechaCorte { get; set; }
+        public System.DateTime fechaLimitePago1 { get; set; }
+        public Nullable<System.DateTime> fechaLimitePago2 { get; set; }
     
         public virtual Project Project { get; set; }
-        public virtual ICollection<BalanceDetail> BalanceDetail { get; set; }
-        public virtual ICollection<BalancePaymentSupport> BalancePaymentSupport { get; set; }
+        public virtual ICollection<PropertyBill> PropertyBill { get; set; }
     }
 }

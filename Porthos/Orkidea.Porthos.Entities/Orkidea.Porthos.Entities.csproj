@@ -44,16 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Balance.cs">
+    <Compile Include="BillGeneration.cs">
       <DependentUpon>PorthosCtx.tt</DependentUpon>
     </Compile>
-    <Compile Include="BalanceDetail.cs">
+    <Compile Include="BillPaymentSupport.cs">
       <DependentUpon>PorthosCtx.tt</DependentUpon>
     </Compile>
-    <Compile Include="BalancePaymentSupport.cs">
+    <Compile Include="Charge.cs">
       <DependentUpon>PorthosCtx.tt</DependentUpon>
     </Compile>
     <Compile Include="Concept.cs">
+      <DependentUpon>PorthosCtx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentType.cs">
       <DependentUpon>PorthosCtx.tt</DependentUpon>
     </Compile>
     <Compile Include="People.cs">
@@ -71,6 +74,9 @@
       <DependentUpon>PorthosCtx.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBill.cs">
+      <DependentUpon>PorthosCtx.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
