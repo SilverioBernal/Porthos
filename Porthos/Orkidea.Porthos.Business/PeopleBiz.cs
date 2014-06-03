@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Orkidea.Porthos.DAL;
 using Orkidea.Porthos.Entities;
+using Orkidea.Porthos.Security;
 using Orkidea.Porthos.Utilities;
 
 namespace Orkidea.Porthos.Business
@@ -40,9 +41,9 @@ namespace Orkidea.Porthos.Business
         /// <summary>
         /// Retrieve information based in the primary key
         /// </summary>
-        /// <param name="PeopleTarget"></param>
+        /// <param name="peopleTarget"></param>
         /// <returns></returns>
-        public People GetPeopleByKey(People PeopleTarget)
+        public People GetPeopleByKey(People peopleTarget)
         {
             People oPeople = new People();
 
@@ -52,7 +53,7 @@ namespace Orkidea.Porthos.Business
                 {
                     ctx.Configuration.ProxyCreationEnabled = false;
 
-                    oPeople = ctx.People.Where(x => x.id.Equals(PeopleTarget.id)).FirstOrDefault();
+                    oPeople = ctx.People.Where(x => x.id.Equals(peopleTarget.id)).FirstOrDefault();
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -63,8 +64,8 @@ namespace Orkidea.Porthos.Business
         /// <summary>
         /// Create or update a new record
         /// </summary>
-        /// <param name="PeopleTarget"></param>
-        public void SavePeople(People PeopleTarget)
+        /// <param name="peopleTarget"></param>
+        public void SavePeople(People peopleTarget)
         {
 
             try
@@ -72,13 +73,13 @@ namespace Orkidea.Porthos.Business
                 using (var ctx = new PropiedadHorizontalEntities())
                 {
                     //verify if the record exists
-                    People oPeople = GetPeopleByKey(PeopleTarget);
+                    People oPeople = GetPeopleByKey(peopleTarget);
 
                     if (oPeople != null)
                     {
                         // if exists then edit 
                         ctx.People.Attach(oPeople);
-                        EntityFrameworkHelper.EnumeratePropertyDifferences(oPeople, PeopleTarget);
+                        EntityFrameworkHelper.EnumeratePropertyDifferences(oPeople, peopleTarget);
                         ctx.SaveChanges();
                     }
                     //else
@@ -116,15 +117,15 @@ namespace Orkidea.Porthos.Business
         /// <summary>
         /// Delete a record
         /// </summary>
-        /// <param name="PeopleTarget"></param>
-        public void DeletePeople(People PeopleTarget)
+        /// <param name="peopleTarget"></param>
+        public void DeletePeople(People peopleTarget)
         {
             try
             {
                 using (var ctx = new PropiedadHorizontalEntities())
                 {
                     //verify if the record exists
-                    People oPeople = GetPeopleByKey(PeopleTarget);
+                    People oPeople = GetPeopleByKey(peopleTarget);
 
                     if (oPeople != null)
                     {
@@ -150,9 +151,9 @@ namespace Orkidea.Porthos.Business
         /// <summary>
         /// Retrieve information based in Username
         /// </summary>
-        /// <param name="PeopleTarget"></param>
+        /// <param name="peopleTarget"></param>
         /// <returns></returns>
-        public People GetPeopleByUsername(People PeopleTarget)
+        public People GetPeopleByUsername(People peopleTarget)
         {
             People oPeople = new People();
 
@@ -162,12 +163,41 @@ namespace Orkidea.Porthos.Business
                 {
                     ctx.Configuration.ProxyCreationEnabled = false;
 
-                    oPeople = ctx.People.Where(x => x.usuario == PeopleTarget.usuario).FirstOrDefault();
+                    oPeople = ctx.People.Where(x => x.usuario == peopleTarget.usuario).FirstOrDefault();
                 }
             }
             catch (Exception ex) { throw ex; }
 
             return oPeople;
+        }
+
+        public int GetPeopleKeyByUsername(People peopleTarget)
+        {
+            People people = GetPeopleByUsername(peopleTarget);
+            return people.id;
+        }
+
+        /// <summary>
+        /// Application authentication
+        /// </summary>
+        /// <param name="peopleTarget">user object</param>
+        /// <returns>true or false</returns>
+        public People PeopleAuthentication(People peopleTarget)
+        {
+            People people = new People();
+            Cryptography oCrypto = new Cryptography();
+
+            people = GetPeopleByUsername(peopleTarget);
+
+            if (people != null)
+            {
+                string password = oCrypto.Decrypt(people.contraseña);
+
+                if (password == oCrypto.Decrypt(peopleTarget.contraseña))
+                    people.contraseña = "";
+            }
+
+            return people;
         }
 
     }

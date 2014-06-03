@@ -144,5 +144,12 @@ namespace Orkidea.Porthos.Business
             }
             catch (Exception ex) { throw ex; }
         }
+
+        /*Complementary business methods*/
+
+        public void EditProject(Project ProjectTarget) 
+        {
+
+        }
     }
 }
