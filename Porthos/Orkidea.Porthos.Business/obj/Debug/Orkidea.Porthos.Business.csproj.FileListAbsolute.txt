@@ -1,0 +1,16 @@
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Business.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Business.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\obj\Debug\Orkidea.Porthos.Business.csprojResolveAssemblyReference.cache
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\obj\Debug\Orkidea.Porthos.Business.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\obj\Debug\Orkidea.Porthos.Business.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Business.dll.config
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\EntityFramework.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.DAL.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Entities.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Security.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Utilities.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.DAL.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Entities.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Security.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Utilities.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\EntityFramework.xml

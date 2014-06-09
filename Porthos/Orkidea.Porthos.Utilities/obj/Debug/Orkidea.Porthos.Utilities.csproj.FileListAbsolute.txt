@@ -1,0 +1,7 @@
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Utilities\bin\Debug\Orkidea.Porthos.Utilities.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Utilities\bin\Debug\Orkidea.Porthos.Utilities.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Utilities\obj\Debug\Orkidea.Porthos.Utilities.csprojResolveAssemblyReference.cache
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Utilities\obj\Debug\Orkidea.Porthos.Utilities.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Utilities\obj\Debug\Orkidea.Porthos.Utilities.pdb
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Utilities\bin\Debug\Orkidea.Porthos.Entities.dll
+C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Utilities\bin\Debug\Orkidea.Porthos.Entities.pdb
