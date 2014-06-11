@@ -1,7 +1,6 @@
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.DAL\bin\Debug\Orkidea.Porthos.DAL.dll.config
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.DAL\bin\Debug\Orkidea.Porthos.DAL.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.DAL\bin\Debug\Orkidea.Porthos.DAL.pdb
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.DAL\bin\Debug\EntityFramework.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.DAL\bin\Debug\Orkidea.Porthos.Entities.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.DAL\bin\Debug\Orkidea.Porthos.Entities.pdb
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.DAL\bin\Debug\EntityFramework.xml

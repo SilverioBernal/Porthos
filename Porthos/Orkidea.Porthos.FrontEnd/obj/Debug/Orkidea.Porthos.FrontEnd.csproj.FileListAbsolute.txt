@@ -1,13 +1,6 @@
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\Orkidea.Porthos.FrontEnd.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\Orkidea.Porthos.FrontEnd.pdb
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\Antlr3.Runtime.dll
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\DotNetOpenAuth.AspNet.dll
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\DotNetOpenAuth.Core.dll
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\DotNetOpenAuth.OAuth.Consumer.dll
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\DotNetOpenAuth.OAuth.dll
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\DotNetOpenAuth.OpenId.dll
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\EntityFramework.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\Microsoft.Data.Edm.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\Microsoft.Data.OData.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.FrontEnd\bin\Microsoft.Web.Infrastructure.dll

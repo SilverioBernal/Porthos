@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="@Url.Content("~/js/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/js/angular.min.js")"></script>
+<script src="@Url.Content("~/js/AngularJSControllers/ProjectController.js")"></script>
+<script data-require="ng-table" data-semver="0.3.0" src="@Url.Content("~/js/ng-table.js")"></script>
+
+<div class="row">
+    <div ng-app="projectList">        
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading text-primary">
+                    <h3 class="panel-title">
+                        <i class="fa fa-suitcase"></i>
+                        Proyectos actuales
+                    <span class="pull-right"></span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <div ng-controller="projectCtrl">
+                            <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover table-striped display">
+                                <tr ng-repeat="project in $data">                                    
+                                    <td data-title="'Nombre'" filter="{ 'nombre': 'text' }"><span style="display:none">{{project.id}}</span> {{project.nombre}} </td>
+                                    <td data-title="'Razón social'" filter="{ 'razonSocial': 'text' }">{{project.razonSocial}} </td>
+                                    <td data-title="'Nit'" filter="{ 'nit': 'text' }">{{project.nit}} </td>
+                                    <td data-title="'Teléfonos'">{{project.telefono1}} - {{project.telefono2}} </td>
+                                    <td data-title="'Fax'">{{project.fax}}</td>
+                                    <td data-title="'e-mail'">{{project.email}} </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /panel body -->
+            </div>
+        </div>
+        <!-- /col-md-12 -->
+    </div>
+</div>

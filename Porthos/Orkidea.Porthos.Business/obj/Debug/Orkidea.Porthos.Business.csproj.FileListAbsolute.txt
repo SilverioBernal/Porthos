@@ -4,7 +4,6 @@ C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\ob
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\obj\Debug\Orkidea.Porthos.Business.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\obj\Debug\Orkidea.Porthos.Business.pdb
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Business.dll.config
-C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\EntityFramework.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.DAL.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Entities.dll
 C:\Users\DESARROLLO\Documents\GitHub\Porthos\Porthos\Orkidea.Porthos.Business\bin\Debug\Orkidea.Porthos.Security.dll
